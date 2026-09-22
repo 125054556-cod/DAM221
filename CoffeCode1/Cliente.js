@@ -6,11 +6,22 @@ const rl = readline.createInterface({ input, output });
 const nota = [];
 function mostrarMenu() {
     console.log(`\n========================= MENU DEL DIA ====================`);
-    inventarioCocina.forEach((producto) => {
-        console.log(`${producto.id}. ${producto.nombre} - $${producto.precio}`);
+    const produtosDisponibles = inventarioCocina.map((producto)=>{
+        return `${producto.id}. ${producto.nombre} - $${producto.precio}`;
+    });
+    console.log("PRODUCTOS DISPONIBLES");
+    productosDisponibles.forEach((texto)=>{
+        console.log(texto);
     });
     console.log(`==============================================================`);
 }
+console.log(`\nPromociiones`);
+inventarioCocina.forEach((producto)=>{
+    if(producto.precio >= 50){
+        const precioPromo = producto.precio -10;
+        console.log(`\n${producto.nombre} en promocion: $${precioPromo}`);
+    }
+});
 function mostrarResumenPedido() {
     console.log(`\n========================= TU TICKET ========================`);
     let totalPagar = 0;
