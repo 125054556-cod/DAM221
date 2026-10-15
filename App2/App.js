@@ -1,15 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import { StyleSheet, Text, View , Image, requireNativeComponent} from 'react-native';
+
+import { Saludo2 } from './Componentes/Saludo2';
+
+import {Saludo} from './Componentes/Saludo';
+export default function App() { 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text></Text>
+      <Image source={require("./assets/wave.png")}></Image>
+
+
+
+      <Text>--------------------------</Text>
+      <Saludo></Saludo>
+      <Saludo2></Saludo2>
+      <StatusBar style="auto"></StatusBar>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
