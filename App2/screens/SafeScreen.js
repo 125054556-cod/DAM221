@@ -21,10 +21,8 @@ export default function SafeScreen() {
         </View>
       <Text style = {styles.subtitulo}>CANCIONES DISPONIBLES</Text>
       <ScrollView style = {styles.lista}
-
-      contentContainerStyle = {styles = {styles.contenidoLista}}
-
-      showsHorizontalScrollIndicator = {true}
+      contentContainerStyle={styles.contenidoLista}
+        showsVerticalScrollIndicator={true}
       
       >
         {canciones.map((item,index)=>

@@ -1,12 +1,40 @@
-import { StyleSheet, View,Text} from 'react-native';
+
+import { StyleSheet, View,Text,Pressable,Switch} from 'react-native';
+import {useState} from 'react';
 
 
 export default function PressableScreen() { 
+  const [mensaje, setMensaje] = useState('Presiona el boton');
+  const [activado, setActivado] = useState(false);
   return (
     <View style={styles.container}>
-        <Text>PARCTICA 10</Text>
-        <Text>DIEGO Y SAUL</Text>
+      <Text style = {styles.titulo}>Pressable</Text>
+        <Text>Mnesaje</Text>
+        <Pressable onPress={()=> setMensaje('Boton presionado')}
+          onPressIn={()=>setMensaje('inicio de pulsacion') }
+          onPressOut={()=>setMensaje('fin de la pulsacion')}
+          onLongPress={()=>setMensaje('pulsacion prolongada')}
+          disabled = {false}
+          style = {({pressed})=>[
+            styles.boton,
+            pressed && styles.botonPresionado
+          ]}>
+            <Text style = {styles.textoBoton}>Presioname</Text>
+          
+        </Pressable>
+        <View style = {styles.separador}>
+          <Text style = {styles.titulo}>Switch</Text>
+          <Text>
+            Estado: {activado ? 'Activado' : 'Desactivado'}
+          </Text>
+          <Switch value = {activado}
+            onValueChange = {setActivado}
+            disabled = {false}
+            trackColor = {{false:'#767577', true:'#81b0ff'}}
+            thumbColor = {activado ? '#f5dd4b' : '#f4f3f4'}>
+          </Switch>
 
+        </View>
     </View>
   );
 }
@@ -16,9 +44,34 @@ export default function PressableScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e2e2e2',
-    flexDirection:'row',
+    width: '100%',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-  }
+    padding: 20,
+    backgroundColor: '#f2f2f2',
+  },
+  titulo: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
+  boton: {
+    backgroundColor: '#319b80',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 15,
+  },
+  botonPresionado: {
+    backgroundColor: '#1e6655',
+  },
+  textoBoton: {
+    color: 'white',
+    fontSize: 16,
+  },
+  separador: {
+    height: 2,
+    backgroundColor: '#cccccc',
+    width: '90%',
+    marginVertical: 35,
+  },
 });
