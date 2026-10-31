@@ -9,7 +9,7 @@ export default function PressableScreen() {
   return (
     <View style={styles.container}>
       <Text style = {styles.titulo}>Pressable</Text>
-        <Text>Mnesaje</Text>
+        <Text>{mensaje}</Text>
         <Pressable onPress={()=> setMensaje('Boton presionado')}
           onPressIn={()=>setMensaje('inicio de pulsacion') }
           onPressOut={()=>setMensaje('fin de la pulsacion')}
