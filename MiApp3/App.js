@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 
 export default function App() {
-  // Estados de la aplicación
   const [isSplash, setIsSplash] = useState(true);
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
@@ -20,28 +19,27 @@ export default function App() {
   const [libros, setLibros] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
 
-  // Requerimiento: Mostrar una pantalla de bienvenida durante 2 segundos
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsSplash(false);
-    }, 2000); // 2000 milisegundos = 2 segundos
+    }, 2000); 
     return () => clearTimeout(timer);
   }, []);
 
-  // Función del botón Agregar Libro
+  
   const agregarLibro = () => {
-    // 1. Validar que todos los campos estén llenos
+  
     if (titulo.trim() === '' || autor.trim() === '' || genero.trim() === '') {
       Alert.alert('Alert', 'Todos los campos son obligatorios.');
       return;
     }
 
-    // Mostrar el ActivityIndicator
+    
     setIsSaving(true);
 
-    // 2. Simular espera antes de guardar, 4 segundos
+    
     setTimeout(() => {
-      // 3. Agregar el libro a la lista
+    
       const nuevoLibro = {
         id: Date.now().toString(),
         titulo: titulo,
@@ -50,20 +48,16 @@ export default function App() {
       };
       setLibros([...libros, nuevoLibro]);
 
-      // 4. Limpiar los TextInput
       setTitulo('');
       setAutor('');
       setGenero('');
       
-      // Ocultar el ActivityIndicator
       setIsSaving(false);
 
-      // 5. Notificar con un Alert
       Alert.alert('Alert', 'Libro guardado correctamente.');
     }, 4000); // 4000 milisegundos = 4 segundos
   };
 
-  // Renderizado del SplashScreen
   if (isSplash) {
     return (
       <View style={styles.splashContainer}>
@@ -73,9 +67,7 @@ export default function App() {
     );
   }
 
-  // Renderizado de la Pantalla Principal
   return (
-    // Requerimiento: Fondo con una imagen usando ImageBackground
     <ImageBackground
       source={{ uri: 'https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1000&auto=format&fit=crop' }} 
       style={styles.background}
@@ -83,7 +75,6 @@ export default function App() {
       <View style={styles.overlay}>
         <Text style={styles.headerTitle}>Catálogo de Libros</Text>
 
-        {/* Formulario */}
         <TextInput
           style={styles.input}
           placeholder="Título del libro"
@@ -103,14 +94,12 @@ export default function App() {
           onChangeText={setGenero}
         />
 
-        {/* Requerimiento: Botón Pressable */}
         <Pressable style={styles.button} onPress={agregarLibro}>
           <Text style={styles.buttonText}>Agregar Libro</Text>
         </Pressable>
 
         <Text style={styles.contadorText}>Total de libros: {libros.length}</Text>
 
-        {/* Requerimiento: FlatList para visualizar la lista */}
         <FlatList
           data={libros}
           keyExtractor={(item) => item.id}
@@ -123,7 +112,6 @@ export default function App() {
           )}
         />
 
-        {/* Overlay con Activity Indicator que se muestra solo al guardar */}
         {isSaving && (
           <View style={styles.loadingOverlay}>
             <ActivityIndicator size="large" color="#ffffff" />
@@ -136,7 +124,6 @@ export default function App() {
   );
 }
 
-// Estilos básicos
 const styles = StyleSheet.create({
   splashContainer: {
     flex: 1,
@@ -161,8 +148,8 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     padding: 20,
-    paddingTop: 60, // Espacio para la barra de estado
-    backgroundColor: 'rgba(0,0,0,0.2)', // Ligero oscurecimiento para que el texto resalte
+    paddingTop: 60, 
+    backgroundColor: 'rgba(0,0,0,0.2)', 
   },
   headerTitle: {
     fontSize: 24,
@@ -172,14 +159,14 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   input: {
-    backgroundColor: '#f2f2f2', // Fondo gris muy claro como en la imagen
+    backgroundColor: '#f2f2f2', 
     padding: 12,
     borderRadius: 8,
     marginBottom: 10,
     fontSize: 16
   },
   button: {
-    backgroundColor: '#1c4c96', // Azul oscuro
+    backgroundColor: '#1c4c96', 
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
@@ -198,7 +185,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.85)', // Blanco semi-transparente
+    backgroundColor: 'rgba(255, 255, 255, 0.85)', 
     padding: 15,
     borderRadius: 8,
     marginBottom: 10
@@ -214,8 +201,7 @@ const styles = StyleSheet.create({
     color: '#333'
   },
   loadingOverlay: {
-    position: 'absolute', // Sobrepone el indicador a todo lo demás
-    top: 0,
+    position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
