@@ -112,3 +112,18 @@ const estilos = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  ImageBackground,
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet
+} from 'react-native';
